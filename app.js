@@ -51,7 +51,15 @@ const connectToDB = async () => {
 // }
 
 //// Query to find one document
-const documentToFind = {_id: new ObjectId('678a62246754edb9960e66c3')}
+// const documentToFind = {_id: new ObjectId('678a62246754edb9960e66c3')}
+
+//// Query to update one document
+// const documentToUpdate = {_id: new ObjectId('678a62246754edb9960e66c3')}
+// const updateDocument = {$inc: {balance: 2000}};
+
+//// Query to update one document
+const documentToUpdate = {accuntType: "savings",}
+const updateDocument = {$push: {transfer_complete: "tk00123992"}};
 
 const main = async () => {
     await connectToDB();
@@ -68,7 +76,13 @@ const main = async () => {
     // console.log({docCount});
 
     //// Query to find one document
-    const result = await AccountCollection.findOne(documentToFind);
+    // const result = await AccountCollection.findOne(documentToFind);
+
+     //// Query to update one document
+    //  const result = await AccountCollection.updateOne(documentToUpdate, updateDocument);
+
+    //// Query to update many document
+    const result = await AccountCollection.updateMany(documentToUpdate, updateDocument);
 
     console.log({result});
     // const query = {name: "John Doe"};
