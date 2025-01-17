@@ -53,13 +53,21 @@ const connectToDB = async () => {
 //// Query to find one document
 // const documentToFind = {_id: new ObjectId('678a62246754edb9960e66c3')}
 
+//// Delete one document
+// const documentToDelete = {_id: new ObjectId('678a62246754edb9960e66c3')}
+
+//// Query to find all documents
+const documentToDelete = {
+    balance: {$lt: 600}
+}
+
 //// Query to update one document
 // const documentToUpdate = {_id: new ObjectId('678a62246754edb9960e66c3')}
 // const updateDocument = {$inc: {balance: 2000}};
 
 //// Query to update one document
-const documentToUpdate = {accuntType: "savings",}
-const updateDocument = {$push: {transfer_complete: "tk00123992"}};
+// const documentToUpdate = {accuntType: "savings",}
+// const updateDocument = {$push: {transfer_complete: "tk00123992"}};
 
 const main = async () => {
     await connectToDB();
@@ -82,7 +90,13 @@ const main = async () => {
     //  const result = await AccountCollection.updateOne(documentToUpdate, updateDocument);
 
     //// Query to update many document
-    const result = await AccountCollection.updateMany(documentToUpdate, updateDocument);
+    // const result = await AccountCollection.updateMany(documentToUpdate, updateDocument);
+
+    //// Delete one document
+    //  const result = await AccountCollection.updateOne(documentToDelete);
+
+    //// Delete many document
+    const result = await AccountCollection.deleteMany(documentToDelete);
 
     console.log({result});
     // const query = {name: "John Doe"};
