@@ -16,18 +16,27 @@ const connectToDB = async () => {
     }
 }
 
-const sampleAccount = {
-    name: "John Doe",
-    balance: 1000,
+const sampleAccount = [{
+    name: "kate Doe",
+    balance: 900,
     accuntType: "savings",
     currency: "USD",
-    account_id: "1234567890",
+    account_id: "1234567891",
     last_updated: new Date(),
-}
+},
+{
+    name: "lucy Doe",
+    balance: 11000,
+    accuntType: "savings",
+    currency: "USD",
+    account_id: "1234567892",
+    last_updated: new Date(),
+},
+]
 
 const main = async () => {
     await connectToDB();
-    const result = await AccountCollection.insertOne(sampleAccount);
+    const result = await AccountCollection.insertMany(sampleAccount);
     console.log({result});
     // const query = {name: "John Doe"};
     // const result = await
